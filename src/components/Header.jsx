@@ -96,7 +96,7 @@ export default function Header() {
           </Link>
           <a
             className="sm:ml-8 flex items-center text-3xl p-2 sm:p-0"
-            href="https://kohrts-solana-wallet.netlify.app/"
+            href="https://stalwart-empanada-9e4535.netlify.app/"
           >
             <GradientText animationSpeed={5} className="text-3xl">
               Wallet
