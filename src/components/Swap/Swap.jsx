@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import SpotlightCard from "../SpotlightCard/SpotlightCard";
 import StarBorder from "../StarBorder/StarBorder";
-import Hyperspeed from "../Hyperspeed/Hyperspeed";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import {
   Connection,
@@ -11,6 +10,7 @@ import {
 import axios from "axios";
 import GradientText from "../GradientText/GradientText";
 import { toast, Toaster } from "sonner";
+import Particles from "../Particles/Particles";
 
 export default function Swap() {
   const [sol, setSol] = useState(0);
@@ -127,76 +127,93 @@ export default function Swap() {
   return (
     <>
       <Toaster />
-      <div className="flex items-center h-[90vh] overflow-y-hidden overflow-x-hidden justify-center relative bg-black">
-        <Hyperspeed />
-        <SpotlightCard className="border rounded-xl opacity-90">
-          <div className="mb-5">
-            <div className="flex justify-between items-center mb-5">
-              {/* Heading */}
-              <GradientText className="text-3xl font-bold" animationSpeed={5}>
-                Swap your Solana with Usdc
-              </GradientText>
-              {/* Slippage Information */}
-            </div>
-            <p className="text-red-500 text-sm opacity-75">Slippage - 0.5%</p>
-          </div>
+      <div className="relative h-[90vh] w-full flex items-center justify-center bg-black overflow-hidden px-4">
+        {/* Particles as Background */}
+        <div className="absolute inset-0 z-0">
+          <Particles
+            particleColors={["#ffffff", "#ffffff"]}
+            particleCount={800}
+            particleSpread={10}
+            speed={0.1}
+            particleBaseSize={100}
+            moveParticlesOnHover={false}
+            alphaParticles={true}
+            disableRotation={false}
+          />
+        </div>
 
-          <div className="flex flex-wrap w-[50vw] -mx-2">
-            {/* Solana Input */}
-            <div className="w-full px-2 mb-4">
-              <label className="block text-gray-300 text-sm font-medium mb-2">
-                Solana Amount
-              </label>
-              <input
-                type="number"
-                placeholder="Enter Solana amount"
-                className="w-full text-white bg-[#0D0D0D] border border-gray-600 rounded p-4 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600 z-10"
-                value={sol}
-                onChange={(e) => {
-                  setSol(e.target.value);
-                }}
-              />
+        {/* Spotlight Card in the Foreground */}
+        <div className="relative z-10 w-full max-w-[500px] md:max-w-[50vw]">
+          <SpotlightCard className="border rounded-xl opacity-90 p-6 w-full">
+            <div className="mb-5">
+              <div className="flex justify-between items-center mb-5">
+                {/* Heading */}
+                <GradientText
+                  className="text-2xl md:text-3xl font-bold"
+                  animationSpeed={5}
+                >
+                  Swap your Solana with USDC
+                </GradientText>
+              </div>
+              <p className="text-red-500 text-sm opacity-75">Slippage - 0.5%</p>
             </div>
 
-            {/* USDC Input */}
-            <div className="w-full px-2 mb-4">
-              <label className="block text-gray-300 text-sm font-medium mb-2">
-                Converted Amount (USDC)
-              </label>
-              <input
-                type="number"
-                placeholder="Converted amount in USDC"
-                className="w-full bg-[#0D0D0D] border border-gray-600 rounded p-4 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600"
-                readOnly={true}
-                value={usdc}
-              />
-            </div>
-          </div>
+            {/* Input Fields */}
+            <div className="grid gap-4">
+              {/* Solana Input */}
+              <div>
+                <label className="block text-gray-300 text-sm font-medium mb-2">
+                  Solana Amount
+                </label>
+                <input
+                  type="number"
+                  placeholder="Enter Solana amount"
+                  className="w-full text-white bg-[#0D0D0D] border border-gray-600 rounded p-3 md:p-4 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600"
+                  value={sol}
+                  onChange={(e) => {
+                    setSol(e.target.value);
+                  }}
+                />
+              </div>
 
-          {/* Swap Button */}
-          <div className="flex justify-center mt-6">
-            {sol > balance ? (
-              <StarBorder
-                color="red"
-                as="button"
-                className="bg-[#333333] w-full text-black px-6 py-4 rounded
-        hover:bg-red-700 hover:text-white transition-colors duration-300"
-                onClick={handleCLick}
-              >
-                Insufficent Balance
-              </StarBorder>
-            ) : (
-              <StarBorder
-                color="red"
-                onClick={convert}
-                className="bg-[#333333] w-full text-black px-6 py-4 rounded
-        hover:bg-red-700 hover:text-white transition-colors duration-300"
-              >
-                Swap
-              </StarBorder>
-            )}
-          </div>
-        </SpotlightCard>
+              {/* USDC Input */}
+              <div>
+                <label className="block text-gray-300 text-sm font-medium mb-2">
+                  Converted Amount (USDC)
+                </label>
+                <input
+                  type="number"
+                  placeholder="Converted amount in USDC"
+                  className="w-full bg-[#0D0D0D] border border-gray-600 rounded p-3 md:p-4 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600"
+                  readOnly={true}
+                  value={usdc}
+                />
+              </div>
+            </div>
+
+            {/* Swap Button */}
+            <div className="flex justify-center mt-6">
+              {sol > balance ? (
+                <StarBorder
+                  color="red"
+                  as="button"
+                  className="bg-[#333333] w-full text-black px-4 md:px-6 py-3 md:py-4 rounded hover:bg-red-700 hover:text-white transition-colors duration-300"
+                  onClick={handleCLick}
+                >
+                  Insufficient Balance
+                </StarBorder>
+              ) : (
+                <StarBorder
+                  color="red"
+                  onClick={convert}
+                  className="bg-[#333333] w-full text-black px-4 md:px-6 py-3 md:py-4 rounded hover:bg-red-700 hover:text-white transition-colors duration-300"
+                >
+                  Swap
+                </StarBorder>
+              )}
+            </div>
+          </SpotlightCard>
+        </div>
       </div>
     </>
   );

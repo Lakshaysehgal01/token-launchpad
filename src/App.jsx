@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import Swap from "./components/Swap/Swap";
 import { Route, Routes } from "react-router-dom";
 import SolFaucet from "./components/SolFaucet/SolFaucet";
+import AuthProvider from "./AuthProvider";
 
 function App() {
   return (
@@ -18,9 +19,30 @@ function App() {
           <WalletModalProvider>
             <Header />
             <Routes>
-              <Route path="/" element={<TokenLaunch />} />
-              <Route path="/swap" element={<Swap />} />
-              <Route path="/solConnect" element={<SolFaucet />} />
+              <Route
+                path="/"
+                element={
+                  <AuthProvider>
+                    <TokenLaunch />
+                  </AuthProvider>
+                }
+              />
+              <Route
+                path="/swap"
+                element={
+                  <AuthProvider>
+                    <Swap />
+                  </AuthProvider>
+                }
+              />
+              <Route
+                path="/solConnect"
+                element={
+                  <AuthProvider>
+                    <SolFaucet />
+                  </AuthProvider>
+                }
+              />
             </Routes>
           </WalletModalProvider>
         </WalletProvider>
