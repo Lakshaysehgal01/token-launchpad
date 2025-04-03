@@ -11,7 +11,10 @@
   },
   "dependencies": {
     "@noble/ed25519": "^2.2.2",
+    "@pinata/sdk": "^2.1.0",
     "@react-spring/web": "^9.7.5",
+    "@react-three/fiber": "^9.1.1",
+    "@react-three/postprocessing": "^3.0.4",
     "@solana/spl-token": "^0.4.9",
     "@solana/spl-token-metadata": "^0.1.6",
     "@solana/wallet-adapter-base": "^0.9.23",
@@ -23,13 +26,14 @@
     "bs58": "^6.0.0",
     "framer-motion": "^11.18.0",
     "lucide-react": "^0.471.1",
+    "ogl": "^1.0.11",
     "pinata-web3": "^0.5.4",
-    "postprocessing": "^6.36.6",
+    "postprocessing": "^6.37.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.1.2",
     "sonner": "^1.7.2",
-    "three": "^0.172.0"
+    "three": "^0.175.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

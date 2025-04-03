@@ -19,10 +19,9 @@ import { createInitializeInstruction, pack } from "@solana/spl-token-metadata";
 import { PinataSDK } from "pinata-web3";
 import StarBorder from "./StarBorder/StarBorder";
 import SpotlightCard from "./SpotlightCard/SpotlightCard";
-import Hyperspeed from "./Hyperspeed/Hyperspeed";
 import GradientText from "./GradientText/GradientText";
 import { toast, Toaster } from "sonner";
-
+import Particles from "./Particles/Particles";
 export default function TokenLaunch() {
   const { connection } = useConnection();
   const wallet = useWallet();
@@ -167,11 +166,24 @@ export default function TokenLaunch() {
     toast.success("Token minted successfully");
   };
   return (
-    <>
+    <div className="relative w-full h-screen overflow-hidden bg-black">
+      {/* Particles as background */}
       <Toaster />
-      <div className="flex items-center h-[90vh] overflow-y-hidden overflow-x-hidden justify-center relative bg-black">
-        <Hyperspeed />
+      <div className="absolute inset-0 z-0">
+        <Particles
+          particleColors={["#ffffff", "#ffffff"]}
+          particleCount={800}
+          particleSpread={10}
+          speed={0.1}
+          particleBaseSize={100}
+          moveParticlesOnHover={false}
+          alphaParticles={true}
+          disableRotation={false}
+        />
+      </div>
 
+      {/* SpotlightCard centered */}
+      <div className="relative z-10 flex items-center justify-center h-full">
         <SpotlightCard className="border rounded-xl opacity-90 w-full max-w-4xl mx-4 p-4 sm:p-8">
           <div className="mb-5">
             <GradientText
@@ -293,6 +305,6 @@ export default function TokenLaunch() {
           )}
         </SpotlightCard>
       </div>
-    </>
+    </div>
   );
 }
