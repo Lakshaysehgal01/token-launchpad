@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { toast, Toaster } from "sonner";
-
+import Loader from "./components/Loader/Loader";
+import Header from "./components/Header";
+import { motion } from "framer-motion";
 const AuthProvider = ({ children }) => {
   const { publicKey, connected, signMessage } = useWallet();
   const [authenticated, setAuthenticated] = useState(false);
@@ -75,17 +77,25 @@ const AuthProvider = ({ children }) => {
 
   if (!authenticated) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen space-y-6 px-4">
-        <Toaster />
-        <div className="w-12 h-12 rounded-full border-4 border-t-transparent border-gray-500 animate-spin"></div>
-        <p>To view Website you must be authenticated</p>
-        <button
-          onClick={handleSignMessage}
-          className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow-md transition-all duration-300 transform hover:bg-blue-700 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300"
-        >
-          Authenticate
-        </button>
-      </div>
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -50 }}
+        transition={{ duration: 0.7 }}
+      >
+        <Header />
+        <div className="flex flex-col items-center justify-center h-[85vh] space-y-6 px-4">
+          <Toaster />
+          <Loader />
+          <p>To view Website you must be authenticated</p>
+          <button
+            onClick={handleSignMessage}
+            className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow-md transition-all duration-300 transform hover:bg-blue-700 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300"
+          >
+            Authenticate
+          </button>
+        </div>
+      </motion.div>
     );
   }
 

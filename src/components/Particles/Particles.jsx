@@ -231,7 +231,10 @@ const Particles = ({
   ]);
 
   return (
-    <div ref={containerRef} className={`relative w-full h-full ${className}`} />
+    <div
+      ref={containerRef}
+      className={`absolute w-full h-full ${className} z-0 overflow-visible`}
+    />
   );
 };
 

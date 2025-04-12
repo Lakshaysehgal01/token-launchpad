@@ -1,7 +1,11 @@
 import { useRef } from "react";
 import "./SpotlightCard.scss";
 
-const SpotlightCard = ({ children, className = "", spotlightColor = "rgba(255, 255, 255, 0.25)" }) => {
+const SpotlightCard = ({
+  children,
+  className = "",
+  spotlightColor = "rgba(255, 255, 255, 0.25)",
+}) => {
   const divRef = useRef(null);
 
   const handleMouseMove = (e) => {
@@ -18,7 +22,7 @@ const SpotlightCard = ({ children, className = "", spotlightColor = "rgba(255, 2
     <div
       ref={divRef}
       onMouseMove={handleMouseMove}
-      className={`card-spotlight ${className}`}
+      className={`card-spotlight ${className} overflow-visible`}
     >
       {children}
     </div>
