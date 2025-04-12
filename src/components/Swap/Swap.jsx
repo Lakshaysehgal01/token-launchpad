@@ -11,7 +11,8 @@ import axios from "axios";
 import GradientText from "../GradientText/GradientText";
 import { toast, Toaster } from "sonner";
 import Particles from "../Particles/Particles";
-
+import Header from "../Header";
+import { motion } from "framer-motion";
 export default function Swap() {
   const [sol, setSol] = useState(0);
   const [usdc, setUsdc] = useState(0);
@@ -125,9 +126,15 @@ export default function Swap() {
     toast.error("Insufficent Balance");
   };
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -50 }}
+      transition={{ duration: 0.7 }}
+    >
       <Toaster />
-      <div className="relative h-[90vh] w-full flex items-center justify-center bg-black overflow-hidden px-4">
+      <Header />
+      <div className="relative h-[86vh] w-full flex items-center justify-center bg-black overflow-hidden px-4">
         {/* Particles as Background */}
         <div className="absolute inset-0 z-0">
           <Particles
@@ -155,7 +162,7 @@ export default function Swap() {
                   Swap your Solana with USDC
                 </GradientText>
               </div>
-              <p className="text-red-500 text-sm opacity-75">Slippage - 0.5%</p>
+              <p className=" text-sm opacity-75">Slippage - 0.5%</p>
             </div>
 
             {/* Input Fields */}
@@ -204,9 +211,9 @@ export default function Swap() {
                 </StarBorder>
               ) : (
                 <StarBorder
-                  color="red"
+                  color="blue"
                   onClick={convert}
-                  className="bg-[#333333] w-full text-black px-4 md:px-6 py-3 md:py-4 rounded hover:bg-red-700 hover:text-white transition-colors duration-300"
+                  className="bg-[#333333] w-full text-black px-4 md:px-6 py-3 md:py-4 rounded hover:bg-blue-700 hover:text-white transition-colors duration-300"
                 >
                   Swap
                 </StarBorder>
@@ -215,6 +222,6 @@ export default function Swap() {
           </SpotlightCard>
         </div>
       </div>
-    </>
+    </motion.div>
   );
 }

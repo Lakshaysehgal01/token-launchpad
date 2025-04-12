@@ -12,7 +12,9 @@ import GradientText from "../GradientText/GradientText";
 import StarBorder from "../StarBorder/StarBorder";
 import { Signature } from "lucide-react";
 import Particles from "../Particles/Particles";
-
+import React from "react";
+import Header from "../Header";
+import { motion } from "framer-motion";
 export default function SolFaucet() {
   const [amount, setAmount] = useState(1);
   const [sol, setSol] = useState(0);
@@ -92,9 +94,15 @@ export default function SolFaucet() {
   };
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -50 }}
+      transition={{ duration: 0.7 }}
+    >
       <Toaster />
-      <div className="relative h-[90vh] w-full flex items-center justify-center bg-black overflow-hidden">
+      <Header />
+      <div className="relative h-[86vh] w-full flex items-center justify-center bg-black overflow-hidden">
         {/* Particles as Background */}
         <div className="absolute inset-0 z-0">
           <Particles
@@ -116,9 +124,7 @@ export default function SolFaucet() {
               <GradientText className="text-3xl font-bold" animationSpeed={5}>
                 Wallet
               </GradientText>
-              <p className="text-red-500 text-sm opacity-75">
-                (Connected to devnet)
-              </p>
+              <p className="text-sm opacity-75">(Connected to devnet)</p>
             </div>
 
             <div className="space-y-6">
@@ -137,7 +143,7 @@ export default function SolFaucet() {
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
                   />
-                  <StarBorder as="button" color="red" onClick={requestAirdrop}>
+                  <StarBorder as="button" color="blue" onClick={requestAirdrop}>
                     Drop
                   </StarBorder>
                 </div>
@@ -155,7 +161,7 @@ export default function SolFaucet() {
                     readOnly
                     value={sol}
                   />
-                  <StarBorder as="button" color="red" onClick={showBalance}>
+                  <StarBorder as="button" color="blue" onClick={showBalance}>
                     Update
                   </StarBorder>
                 </div>
@@ -174,7 +180,7 @@ export default function SolFaucet() {
                     value={msg}
                     onChange={(e) => setMsg(e.target.value)}
                   />
-                  <StarBorder as="button" color="red" onClick={signing}>
+                  <StarBorder as="button" color="blue" onClick={signing}>
                     <Signature className="inline-block" /> Sign
                   </StarBorder>
                 </div>
@@ -200,7 +206,7 @@ export default function SolFaucet() {
                     value={sendMoney}
                     onChange={(e) => setSendMoney(e.target.value)}
                   />
-                  <StarBorder as="button" color="red" onClick={sendSol}>
+                  <StarBorder as="button" color="blue" onClick={sendSol}>
                     Send
                   </StarBorder>
                 </div>
@@ -209,6 +215,6 @@ export default function SolFaucet() {
           </SpotlightCard>
         </div>
       </div>
-    </>
+    </motion.div>
   );
 }
