@@ -15,7 +15,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { connected } = useWallet();
   return (
-    <header className="md:sticky top-0 w-full z-50 ">
+    <header className="md:sticky top-0 w-full z-10 ">
       <SpotlightCard className=" flex flex-col sm:flex-row sm:justify-between sm:items-center w-full border-r-8 rounded-b-3xl px-4 py-2 overflow-visible bg-black">
         {/* Mobile Header Row */}
         <div className="flex justify-between items-center sm:hidden">
