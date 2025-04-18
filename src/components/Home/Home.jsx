@@ -41,7 +41,7 @@ const HomePage = () => {
           </div>
 
           {/* Spotlight Card */}
-          <div className="relative z-10 bg-gradient-to-r from-blue-600 via-purple-500 to-green-500 rounded-3xl shadow-xl w-full max-w-6xl p-6 sm:p-10 lg:p-16 text-white overflow-hidden h-[60vh]">
+          <div className="relative z-10 bg-gradient-to-r from-blue-600 via-purple-500 to-green-500 rounded-3xl shadow-xl w-full max-w-6xl p-6 sm:p-10 lg:p-16 text-white overflow-hidden h-[75vh]">
             {/* Heading */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-snug">
               Welcome to <br className="sm:hidden" /> Solana Token Manager
@@ -67,7 +67,7 @@ const HomePage = () => {
             </div>
 
             {/* Bottom wave */}
-            <div className="absolute bottom-0 left-0 w-full md:h-36 overflow-hidden ">
+            <div className="absolute bottom-0 left-0 w-full md:h-20 overflow-hidden ">
               <svg
                 className="absolute bottom-0 w-full h-full"
                 viewBox="0 0 1440 320"

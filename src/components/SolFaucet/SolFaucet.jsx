@@ -102,7 +102,7 @@ export default function SolFaucet() {
     >
       <Toaster />
       <Header />
-      <div className="relative h-[86vh] w-full flex items-center justify-center bg-black overflow-hidden">
+      <div className="relative sm:h-[90vh] sm:pt-4 w-full flex items-center justify-center bg-black overflow-hidden">
         {/* Particles as Background */}
         <div className="absolute inset-0 z-0">
           <Particles
@@ -119,7 +119,7 @@ export default function SolFaucet() {
 
         {/* Spotlight Card in the Foreground */}
         <div className="relative z-10">
-          <SpotlightCard className="w-full max-w-2xl border rounded-xl opacity-90 p-6">
+          <SpotlightCard className="w-full max-w-2xl border rounded-xl opacity-90 p-6 mt-5 mb-3">
             <div className="mb-5 text-center">
               <GradientText className="text-3xl font-bold" animationSpeed={5}>
                 Wallet

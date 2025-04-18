@@ -186,11 +186,12 @@ export default function TokenLaunch() {
       exit={{ opacity: 0, y: -50 }}
       transition={{ duration: 0.7 }}
     >
-      <div className="relative w-full h-screen overflow-hidden bg-black">
-        {/* Particles as background */}
+      <div className="relative w-full min-h-screen overflow-hidden bg-black">
         <Header />
         <Toaster />
-        <div className="absolute inset-0 z-0">
+
+        {/* Particles background */}
+        <div className="static inset-0">
           <Particles
             particleColors={["#ffffff", "#ffffff"]}
             particleCount={800}
@@ -203,107 +204,85 @@ export default function TokenLaunch() {
           />
         </div>
 
-        {/* SpotlightCard centered */}
-        <div className="relative z-10 flex items-center justify-center h-full">
-          <SpotlightCard className="border rounded-xl opacity-90 w-full max-w-4xl mx-4 p-4 sm:p-8">
-            <div className="mb-5">
+        {/* Centered card */}
+        <div className="relative z-10 flex items-center justify-center min-h-screen p-4">
+          <SpotlightCard className="w-full max-w-4xl bg-opacity-90 border rounded-xl p-4 sm:p-8">
+            <div className="mb-5 text-center">
               <GradientText
                 animationSpeed={5}
-                className="text-2xl sm:text-3xl font-bold mb-2 text-center"
+                className="text-2xl sm:text-3xl font-bold mb-2"
               >
                 Create Your Own Token
               </GradientText>
-              <p className=" text-sm opacity-75 text-center">
-                (Connected to devnet)
-              </p>
+              <p className="text-sm opacity-75">(Connected to devnet)</p>
             </div>
 
-            <div className="flex flex-wrap w-full -mx-2">
-              {/* Name Input */}
-              <div className="w-full sm:w-1/2 px-2 mb-4">
-                <input
-                  type="text"
-                  placeholder="Name"
-                  value={newToken.name}
-                  onChange={(e) =>
-                    setNewToken({ ...newToken, name: e.target.value })
-                  }
-                  className="w-full text-white bg-[#0D0D0D] border border-gray-600 rounded p-3 sm:p-4 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600 z-10"
-                />
-              </div>
+            {/* Form fields */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <input
+                type="text"
+                placeholder="Name"
+                value={newToken.name}
+                onChange={(e) =>
+                  setNewToken({ ...newToken, name: e.target.value })
+                }
+                className="w-full text-white bg-[#0D0D0D] border border-gray-600 rounded p-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600"
+              />
 
-              {/* Symbol Input */}
-              <div className="w-full sm:w-1/2 px-2 mb-4">
-                <input
-                  type="text"
-                  placeholder="Symbol"
-                  value={newToken.symbol}
-                  onChange={(e) =>
-                    setNewToken({ ...newToken, symbol: e.target.value })
-                  }
-                  className="w-full bg-[#0D0D0D] border border-gray-600 rounded p-3 sm:p-4 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600"
-                />
-              </div>
+              <input
+                type="text"
+                placeholder="Symbol"
+                value={newToken.symbol}
+                onChange={(e) =>
+                  setNewToken({ ...newToken, symbol: e.target.value })
+                }
+                className="w-full bg-[#0D0D0D] border border-gray-600 rounded p-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600"
+              />
 
-              {/* Image URL Input */}
-              <div className="w-full sm:w-1/2 px-2 mb-4">
-                <input
-                  type="text"
-                  placeholder="Image URL"
-                  value={newToken.image}
-                  onChange={(e) =>
-                    setNewToken({ ...newToken, image: e.target.value })
-                  }
-                  className="w-full bg-[#0D0D0D] border border-gray-600 rounded p-3 sm:p-4 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600"
-                />
-              </div>
+              <input
+                type="text"
+                placeholder="Image URL"
+                value={newToken.image}
+                onChange={(e) =>
+                  setNewToken({ ...newToken, image: e.target.value })
+                }
+                className="w-full bg-[#0D0D0D] border border-gray-600 rounded p-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600"
+              />
 
-              {/* Initial Supply Input */}
-              <div className="w-full sm:w-1/2 px-2 mb-4">
-                <input
-                  type="number"
-                  placeholder="Initial Supply"
-                  value={newToken.totalSupply}
-                  onChange={(e) =>
-                    setNewToken({
-                      ...newToken,
-                      totalSupply: Number(e.target.value),
-                    })
-                  }
-                  className="w-full bg-[#0D0D0D] border border-gray-600 rounded p-3 sm:p-4 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600"
-                />
-              </div>
+              <input
+                type="number"
+                placeholder="Initial Supply"
+                value={newToken.totalSupply}
+                onChange={(e) =>
+                  setNewToken({
+                    ...newToken,
+                    totalSupply: Number(e.target.value),
+                  })
+                }
+                className="w-full bg-[#0D0D0D] border border-gray-600 rounded p-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600"
+              />
 
-              {/* Description */}
-              <div className="w-full sm:w-1/2 px-2 mb-4">
-                <input
-                  type="text"
-                  placeholder="Description"
-                  value={newToken.description}
-                  onChange={(e) =>
-                    setNewToken({ ...newToken, description: e.target.value })
-                  }
-                  className="w-full bg-[#0D0D0D] border border-gray-600 rounded p-3 sm:p-4 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600"
-                />
-              </div>
+              <input
+                type="text"
+                placeholder="Description"
+                value={newToken.description}
+                onChange={(e) =>
+                  setNewToken({ ...newToken, description: e.target.value })
+                }
+                className="w-full bg-[#0D0D0D] border border-gray-600 rounded p-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600"
+              />
 
-              {/* Decimals */}
-              <div className="w-full sm:w-1/2 px-2 mb-4">
-                <input
-                  type="number"
-                  min={1}
-                  max={9}
-                  placeholder="Decimal"
-                  value={newToken.decimal}
-                  onChange={(e) =>
-                    setNewToken({
-                      ...newToken,
-                      decimal: e.target.value,
-                    })
-                  }
-                  className="w-full bg-[#0D0D0D] border border-gray-600 rounded p-3 sm:p-4 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600"
-                />
-              </div>
+              <input
+                type="number"
+                min={1}
+                max={9}
+                placeholder="Decimal"
+                value={newToken.decimal}
+                onChange={(e) =>
+                  setNewToken({ ...newToken, decimal: e.target.value })
+                }
+                className="w-full bg-[#0D0D0D] border border-gray-600 rounded p-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600"
+              />
             </div>
 
             {/* Create Button */}
@@ -314,13 +293,7 @@ export default function TokenLaunch() {
                 className="bg-[#333333] w-full sm:w-auto text-black px-6 py-3 sm:py-4 rounded hover:bg-[#0f3d8dfd] hover:text-white transition-colors duration-300"
               >
                 {isLoader ? (
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                    }}
-                  >
+                  <div className="flex items-center gap-2">
                     <span>Creating token</span>
                     <Loader w={4} h={4} />
                   </div>
@@ -336,7 +309,7 @@ export default function TokenLaunch() {
                 <h3>Public address of the created token:</h3>
                 <GradientText
                   animationSpeed={5}
-                  className="text-sm sm:text-sm font-bold mb-2 text-center"
+                  className="text-sm font-bold break-all"
                 >
                   {tokenAddress}
                 </GradientText>
